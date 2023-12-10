@@ -1,4 +1,11 @@
-<h2>{{titulo}}</h2>
-<p>{{nota}} {{index}}</p>
-<button title="editar" (click)="editar()">Editar</button>
-<button title="borrar" (click)="borrar()">Borrar</button>
+<h2 *ngIf="!editando">{{titulo}}</h2>
+<p *ngIf="!editando">{{nota}}</p>
+<button *ngIf="!editando" title="editar" (click)="editar()">Editar</button>
+<button *ngIf="!editando" title="borrar" (click)="borrar()">Borrar</button>
+
+<br *ngIf="editando">
+<input *ngIf="editando" title="titulo" [(ngModel)]="titulo">
+<br *ngIf="editando">
+<textarea *ngIf="editando" title="nota" [(ngModel)]="nota"></textarea>
+<br *ngIf="editando">
+<button *ngIf="editando" title="confirmar" (click)="editar()">Confirmar</button>

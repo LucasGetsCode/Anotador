@@ -52,4 +52,14 @@ export class AppComponent {
     sessionStorage.setItem("notas", JSON.stringify(this.notas));
     console.log("El elemento de índice " + index + " ha sido eliminado con éxito.");
   }
+
+  editar([titulo, nota, index] : [string, string, number]) {
+    if (this.notas[index][0] != titulo || this.notas[index][1] != nota) {
+      this.notas[index] = [titulo, nota, index];
+      sessionStorage.setItem("notas", JSON.stringify(this.notas));
+      console.log("El elemento de índice " + index + " ha sido editado con éxito.");  
+    } else {
+      console.log("No había nada que editar");      
+    }
+  }
 }
