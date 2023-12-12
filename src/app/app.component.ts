@@ -44,7 +44,7 @@ export class AppComponent {
       this.notas = [[titulo, nota, index]];
     }
     sessionStorage.setItem("notas", JSON.stringify(this.notas));
-    this.creando = false;   
+    this.creando = false;
   }
 
   cancelado() {
@@ -52,21 +52,21 @@ export class AppComponent {
   }
 
   borrar(index: number) {
-    this.notas.splice(index,1);
+    this.notas.splice(index, 1);
     for (let i = index; i < this.notas.length; i++) {
-      this.notas[i][2] -= 1;      
+      this.notas[i][2] -= 1;
     }
     sessionStorage.setItem("notas", JSON.stringify(this.notas));
     console.log("El elemento de índice " + index + " ha sido eliminado con éxito.");
   }
 
-  editar([titulo, nota, index] : [string, string, number]) {
+  editar([titulo, nota, index]: [string, string, number]) {
     if (this.notas[index][0] != titulo || this.notas[index][1] != nota) {
       this.notas[index] = [titulo, nota, index];
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
-      console.log("El elemento de índice " + index + " ha sido editado con éxito.");  
+      console.log("El elemento de índice " + index + " ha sido editado con éxito.");
     } else {
-      console.log("No había nada que editar");      
+      console.log("No había nada que editar");
     }
   }
 
@@ -80,11 +80,11 @@ export class AppComponent {
       // this.notas[index-1][1] = nota;
 
       let nota = this.notas[index];
-      this.notas[index] = this.notas[index-1];
-      this.notas[index-1] = nota;
+      this.notas[index] = this.notas[index - 1];
+      this.notas[index - 1] = nota;
 
       this.notas[index][2] += 1;
-      this.notas[index-1][2] -=1;      
+      this.notas[index - 1][2] -= 1;
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
   }
@@ -99,11 +99,11 @@ export class AppComponent {
       // this.notas[index+1][1] = nota;
 
       let nota = this.notas[index];
-      this.notas[index] = this.notas[index+1];
-      this.notas[index+1] = nota;
+      this.notas[index] = this.notas[index + 1];
+      this.notas[index + 1] = nota;
 
       this.notas[index][2] -= 1;
-      this.notas[index+1][2] +=1;
+      this.notas[index + 1][2] += 1;
 
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
