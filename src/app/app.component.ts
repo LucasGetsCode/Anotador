@@ -72,16 +72,39 @@ export class AppComponent {
 
   subir(index: number) {
     if (index != 0) {
-      this.notas[index][2] -= 1;
-      this.notas[index-1][2] +=1;      
+      // let titulo = this.notas[index][0];
+      // this.notas[index][0] = this.notas[index-1][0];
+      // this.notas[index-1][0] = titulo;
+      // let nota = this.notas[index][0];
+      // this.notas[index][1] = this.notas[index-1][1];
+      // this.notas[index-1][1] = nota;
+
+      let nota = this.notas[index];
+      this.notas[index] = this.notas[index-1];
+      this.notas[index-1] = nota;
+
+      this.notas[index][2] += 1;
+      this.notas[index-1][2] -=1;      
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
   }
 
   bajar(index: number) {
     if (index != this.notas.length - 1) {
-      this.notas[index][2] += 1;
-      this.notas[index+1][2] -=1;
+      // let titulo = this.notas[index][0];
+      // this.notas[index][0] = this.notas[index+1][0];
+      // this.notas[index+1][0] = titulo;
+      // let nota = this.notas[index][0];
+      // this.notas[index][1] = this.notas[index+1][1];
+      // this.notas[index+1][1] = nota;
+
+      let nota = this.notas[index];
+      this.notas[index] = this.notas[index+1];
+      this.notas[index+1] = nota;
+
+      this.notas[index][2] -= 1;
+      this.notas[index+1][2] +=1;
+
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
   }

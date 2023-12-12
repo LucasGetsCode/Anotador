@@ -4,7 +4,7 @@
 <button title="clear" type="button" (click)="clear(false)" *ngIf="reinicio">Cancelar reinicio</button>
 <br>
 <div *ngFor="let nota of notas">
-    <app-nota [titulo]="nota[0]" [nota]="nota[1]" [(index)]="nota[2]"
+    <app-nota [titulo]="nota[0]" [nota]="nota[1]" [index]="nota[2]"
     (borrado)="borrar($event)" (editado)="editar($event)" (subido)="subir($event)" (bajado)="bajar($event)"></app-nota>
 </div>
 <app-nota-creador *ngIf="creando" (enviarDatos)="creado($event)" (cancelarEnvio)="cancelado()"></app-nota-creador>

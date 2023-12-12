@@ -13,7 +13,6 @@ export class NotaComponent {
   @Input() titulo: string = "";
   @Input() nota: string = "";
   @Input() index: number = 0;
-  @Output() indexChange = new EventEmitter();
 
   @Output() borrado = new EventEmitter();
   @Output() editado = new EventEmitter();
@@ -42,10 +41,6 @@ export class NotaComponent {
 
   subir() {
     this.subido.emit(this.index);
-    if (this.index != 0) {
-      this.index -= 1;
-    }
-    this.indexChange.emit(this.index)
   }
 
   bajar() {
