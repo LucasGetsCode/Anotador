@@ -1,9 +1,13 @@
+:root {
+    --color-fondo: #fbfbfb;
+}
+
 .nota {
     border: 1px solid gray;
     border-radius: 10px;
     margin: 5px;
     padding: 5px;
-    background-color: #fbfbfb;
+    background-color: var(--color-fondo);
 }
 
 .nota:hover {
@@ -12,4 +16,31 @@
 
 .nota:active {
     background-color: #f0f0f0;
+}
+
+.button-container {
+    display: flex; /* Necesario para centrar */
+    align-items: center; /* Centra verticalmente */
+    margin: 2px;
+    justify-content: center; /* Centra horizontalmente */
+}
+
+.button {
+    border: 0px solid;
+    background-color: var(--color-fondo);
+    font-size: larger;
+    margin: 2px;
+    padding: 0px;
+}
+
+.button:hover {
+    color: blue;
+    background-color: #dedede;
+}
+
+.superior {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2px;
 }
