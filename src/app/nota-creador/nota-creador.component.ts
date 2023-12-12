@@ -16,6 +16,13 @@ export class NotaCreadorComponent {
       this.enviarDatos.emit([this.titulo, this.nota])
     }
 
+    shiftenter(event: KeyboardEvent) {
+      if (event.key === 'Enter' && event.shiftKey) {
+        this.ok();
+        event.preventDefault();
+      }
+    }
+
     cancelar() {
       console.log("cancelar");
       this.cancelarEnvio.emit();

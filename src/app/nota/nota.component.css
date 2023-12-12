@@ -1,0 +1,15 @@
+.nota {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #fbfbfb;
+}
+
+.nota:hover {
+    background-color: #f0f0f0;
+}
+
+.nota:active {
+    background-color: #f0f0f0;
+}

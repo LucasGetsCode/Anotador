@@ -1,15 +1,18 @@
-<div *ngIf="!editando">
+<div *ngIf="!editando" class="nota">
     <h2>{{titulo}}</h2>
+    <button type="button" title="arriba" class="button" (click)="subir()">^</button>
+    <button type="button" title="bajar" class="button" (click)="bajar()">v</button>
     <p>{{nota}}</p>
-    <button title="editar" (click)="editar()">Editar</button>
-    <button title="borrar" (click)="borrar()">Borrar</button>
+    <button type="button" title="editar" class="button principal" (click)="editar()">Editar</button>
+    <button type="button" title="borrar" class="button secundario" (click)="borrar()">Borrar</button>
 </div>
 
-<div *ngIf="editando">
+<div *ngIf="editando" class="nota">
     <br>
-    <input title="titulo" [(ngModel)]="titulo">
+    <input title="titulo" [(ngModel)]="titulo" (keydown)="shiftenter($event)">
     <br>
-    <textarea title="nota" [(ngModel)]="nota"></textarea>
+    <textarea title="nota" [(ngModel)]="nota" (keydown)="shiftenter($event)"></textarea>
     <br>
-    <button title="confirmar" (click)="editar()">Confirmar</button>
+    <button type="button" title="confirmar" class="button principal" (click)="editar()">Confirmar</button>
+    <button type="button" title="confirmar" class="button principal" (click)="cancelar()">Cancelar</button>
 </div>

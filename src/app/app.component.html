@@ -1,8 +1,12 @@
 <h1>Notas</h1>
-<button title="clear" type="button" (click)="clear()">Reiniciar</button>
+<button title="clear" type="button" (click)="clear(false)" *ngIf="!reinicio">Reiniciar</button>
+<button title="clear" type="button" (click)="clear(true)" *ngIf="reinicio">Confirmar reinicio</button>
+<button title="clear" type="button" (click)="clear(false)" *ngIf="reinicio">Cancelar reinicio</button>
+<br>
 <div *ngFor="let nota of notas">
-    <app-nota [titulo]="nota[0]" [nota]="nota[1]" [index]="nota[2]"
-    (borrado)="borrar($event)" (editado)="editar($event)"></app-nota>
+    <app-nota [titulo]="nota[0]" [nota]="nota[1]" [(index)]="nota[2]"
+    (borrado)="borrar($event)" (editado)="editar($event)" (subido)="subir($event)" (bajado)="bajar($event)"></app-nota>
 </div>
 <app-nota-creador *ngIf="creando" (enviarDatos)="creado($event)" (cancelarEnvio)="cancelado()"></app-nota-creador>
+<br>
 <button title="crear" type="button" (click)="crear('hola')">Crear</button>

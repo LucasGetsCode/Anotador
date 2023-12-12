@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Anotador2';
-  creando = false;
-  notas: [[string, string, number]];
+  title: string = 'Anotador2';
+  creando: boolean = false;
+  notas: [string, string, number][];
+  reinicio: boolean = false;
 
   constructor() {
     let descarga = sessionStorage.getItem("notas");
@@ -18,8 +19,14 @@ export class AppComponent {
     }
   }
 
-  clear() {
-    sessionStorage.clear();
+  clear(confirmado: boolean) {
+    if (confirmado == true) {
+      sessionStorage.clear();
+      this.notas.length = 0;
+      this.reinicio = false;
+    } else {
+      this.reinicio = !this.reinicio;
+    }
   }
 
   crear(mensaje: string) {
@@ -45,7 +52,7 @@ export class AppComponent {
   }
 
   borrar(index: number) {
-    this.notas.splice(index,index);
+    this.notas.splice(index,1);
     for (let i = index; i < this.notas.length; i++) {
       this.notas[i][2] -= 1;      
     }
@@ -60,6 +67,22 @@ export class AppComponent {
       console.log("El elemento de índice " + index + " ha sido editado con éxito.");  
     } else {
       console.log("No había nada que editar");      
+    }
+  }
+
+  subir(index: number) {
+    if (index != 0) {
+      this.notas[index][2] -= 1;
+      this.notas[index-1][2] +=1;      
+      sessionStorage.setItem("notas", JSON.stringify(this.notas));
+    }
+  }
+
+  bajar(index: number) {
+    if (index != this.notas.length - 1) {
+      this.notas[index][2] += 1;
+      this.notas[index+1][2] -=1;
+      sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
   }
 }
