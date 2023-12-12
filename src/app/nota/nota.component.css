@@ -1,5 +1,6 @@
 :root {
     --color-fondo: #fbfbfb;
+    --color-hover: #f0f0f0;
 }
 
 .nota {
@@ -11,23 +12,26 @@
 }
 
 .nota:hover {
-    background-color: #f0f0f0;
+    background-color: var(--color-hover);
 }
 
 .nota:active {
-    background-color: #f0f0f0;
+    background-color: var(--color-hover);
 }
 
 .button-container {
-    display: flex; /* Necesario para centrar */
-    align-items: center; /* Centra verticalmente */
+    display: flex;
+    /* Necesario para centrar */
+    align-items: center;
+    /* Centra verticalmente */
     margin: 2px;
-    justify-content: center; /* Centra horizontalmente */
+    justify-content: center;
+    /* Centra horizontalmente */
 }
 
 .button {
     border: 0px solid;
-    background-color: var(--color-fondo);
+    background-color: rgba(0, 0, 0, 0);
     font-size: larger;
     margin: 2px;
     padding: 0px;
@@ -35,7 +39,7 @@
 
 .button:hover {
     color: blue;
-    background-color: #dedede;
+    background-color: var(--color-boton-hover);
 }
 
 .superior {
@@ -43,4 +47,5 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 2px;
+    background-color: var(--hoverColor);
 }

@@ -1,16 +1,17 @@
-<div *ngIf="!editando" class="nota">
+<div *ngIf="!editando" class="nota"> <!--[style.background-color]="color">-->
     <div class="superior">
         <h2>{{titulo}}</h2>
         <div class="button-container">
             <button type="button" title="arriba" class="button mover" (click)="subir()">▲</button>
-            <button type="button" title="bajar" class="button mover" (click)="bajar()">▼</button>        
+            <button type="button" title="bajar" class="button mover" (click)="bajar()">▼</button>
         </div>
     </div>
     <div class="inferior">
         <p>{{nota}}</p>
         <div class="button-container">
             <button type="button" title="editar" class="button principal" (click)="editar()">✎</button>
-            <button type="button" title="borrar" class="button secundario" (click)="borrar()">🗑️</button>        
+            <button type="button" title="borrar" class="button secundario" (click)="borrar()">🗑️</button>
+            <input type="color" [(ngModel)]="color" (input)="actualizarColores()" />
         </div>
     </div>
 </div>
@@ -24,3 +25,5 @@
     <button type="button" title="confirmar" class="button principal" (click)="editar()">Confirmar</button>
     <button type="button" title="confirmar" class="button principal" (click)="cancelar()">Cancelar</button>
 </div>
+
+<button type="button" title="extra">👍</button>
