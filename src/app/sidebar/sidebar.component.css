@@ -9,6 +9,7 @@
     overflow-x: hidden;
     padding-top: 20px;
     transition: 0.5s;
+    visibility: hidden;
 }
 
 .desactivada {
@@ -63,6 +64,7 @@
 /* Mostrar la barra lateral cuando tiene la clase 'open' */
 .sidebar.open {
   left: 0;
+  visibility: visible;
 }
 
 .flechita.open {
