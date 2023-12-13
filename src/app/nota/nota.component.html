@@ -1,14 +1,14 @@
 <div *ngIf="!editando" class="nota"> <!--[style.background-color]="color">-->
     <div class="superior">
         <h2>{{titulo}}</h2>
-        <div class="button-container">
+        <div class="button-container columna">
             <button type="button" title="Subir" class="button mover" (click)="subir()">▲</button>
             <button type="button" title="Bajar" class="button mover" (click)="bajar()">▼</button>
         </div>
     </div>
     <div class="inferior">
-        <p style="overflow-wrap: break-word;">{{nota}}</p>
-        <div class="button-container">
+        <p style="overflow-wrap: break-word; margin: 0px 5px;">{{nota}}</p>
+        <div class="button-container fila">
             <button type="button" title="Editar" class="button principal" (click)="editar()">✎</button>
             <button type="button" title="Borrar" class="button secundario" (click)="borrar()">🗑️</button>
         </div>
