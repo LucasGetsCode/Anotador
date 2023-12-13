@@ -27,14 +27,10 @@ export class NotaComponent implements OnInit {
 
   ngOnInit(): void {
     this.actualizarColores();
-    console.log(this.color);
-
   }
 
   actualizarColores(color?: string) {
     if (color) {
-      console.log("Color insertado");
-
       this.color = color;
     }
     let background: string = this.color//.length > 0 ? this.color : "#fbfbfb";
@@ -74,8 +70,6 @@ export class NotaComponent implements OnInit {
 
   subir() {
     this.subido.emit(this.index);
-    console.log(this.color);
-
   }
 
   bajar() {

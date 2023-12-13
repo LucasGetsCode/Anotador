@@ -1,0 +1,79 @@
+/* Estilos para la barra lateral */
+.sidebar {
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    transition: 0.5s;
+}
+
+.desactivada {
+  margin-left: 180;
+  text-align: right;
+}
+
+.flechita {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transition: 0.5s;
+  margin-left: -5px;
+  transform: scaleX(-1);
+}
+
+.barra {
+  font-size: larger;
+  border: 0px solid;
+  color: #000;
+  background-color: transparent;
+  padding-left: 0px;
+}
+
+.barra:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.contenido {
+  margin: 0px 30px;
+}
+  
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Mostrar la barra lateral cuando tiene la clase 'open' */
+.sidebar.open {
+  left: 0;
+}
+
+.flechita.open {
+  left: 200px;
+  transform: scaleX(1);
+}
+
+/* Estilos para el contenido principal */
+.content {
+  margin-left: 200px;
+  padding: 16px;
+  transition: margin-left 0.5s;
+}
+  

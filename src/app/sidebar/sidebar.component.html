@@ -1,0 +1,18 @@
+<div class="sidebar" [ngClass]="{ 'open': sidebarOpen }">
+    <!-- Contenido de la barra lateral -->
+    <div class="desactivada">
+      <button class="toggler" type="button" (click)="toggleSidebar()">☰</button>
+    </div>
+    <div class="contenido">
+      <ul>
+        <li><a href="#">Opción 1</a></li>
+        <li><a href="#">Opción 2</a></li>
+        <li><a href="#">Opción 3</a></li>
+      </ul>  
+    </div>
+</div>
+<div class="flechita" [ngClass]="{ 'open': sidebarOpen }">
+  <button class="barra" title="barra" (click)="toggleSidebar()">〈</button>  
+</div>
+
+<button title="barra" (click)="toggleSidebar()">.</button>
