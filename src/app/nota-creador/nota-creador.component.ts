@@ -6,14 +6,15 @@ import { Component, Output, EventEmitter, NgModule } from '@angular/core';
   styleUrl: './nota-creador.component.css'
 })
 export class NotaCreadorComponent {
-  titulo = ""
-  nota = ""
+  titulo = "";
+  nota = "";
+  color = "";
 
   @Output() enviarDatos = new EventEmitter();
   @Output() cancelarEnvio = new EventEmitter();
 
     ok() {
-      this.enviarDatos.emit([this.titulo, this.nota])
+      this.enviarDatos.emit([this.titulo, this.nota, this.color])
     }
 
     shiftenter(event: KeyboardEvent) {

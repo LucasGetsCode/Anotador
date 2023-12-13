@@ -34,11 +34,15 @@
 }
 
 .columna {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .fila {
+    display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .button {

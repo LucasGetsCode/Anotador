@@ -46,14 +46,14 @@ export class AppComponent {
     console.log(mensaje);
   }
 
-  creado([titulo, nota]: [string, string]) {
+  creado([titulo, nota, color]: [string, string, string]) {
     let index = this.notas.length;
     console.log("Título: " + titulo);
     console.log("Nota: " + nota);
     if (this.notas != null) {
-      this.notas.push({ "titulo": titulo, "nota": nota, "index": index, "color": "#fbfbfb" });
+      this.notas.push({ "titulo": titulo, "nota": nota, "index": index, "color": color });
     } else {
-      this.notas = [{ "titulo": titulo, "nota": nota, "index": index, "color": "#fbfbfb" }];
+      this.notas = [{ "titulo": titulo, "nota": nota, "index": index, "color": color }];
     }
     sessionStorage.setItem("notas", JSON.stringify(this.notas));
     this.creando = false;

@@ -1,8 +1,16 @@
-<h2>Título:</h2>
-<input title="titulo" [(ngModel)]="titulo" (keydown)="shiftenter($event)">
-
-<h3>Nota:</h3>
-<textarea title="nota" [(ngModel)]="nota" (keydown)="shiftenter($event)"></textarea>
-
-<button type="button" title="ok" (click)="ok()">OK</button>
-<button type="button" title="cancel" (click)="cancelar()">Cancelar</button>
+<div class="nota">
+    <h2>Título:</h2>
+    <input title="Título" class="input" [(ngModel)]="titulo" (keydown)="shiftenter($event)">
+    
+    <h3>Nota:</h3>
+    <textarea title="Nota" class="input" [(ngModel)]="nota" (keydown)="shiftenter($event)"></textarea>
+    <div class="fila">
+        <h4 style="margin: 1px;">Color:</h4>
+        <input type="color" title="color" class="button" [(ngModel)]="color"/>    
+    </div>
+    <div class="button-container fila">
+        <button type="button" title="Ok" (click)="ok()">OK</button>
+        <button type="button" title="Cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+    
+</div>

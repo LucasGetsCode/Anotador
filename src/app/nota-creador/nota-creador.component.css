@@ -1,0 +1,78 @@
+:root {
+    --color-fondo: #fbfbfb;
+    --color-hover: #f0f0f0;
+    --color-boton-hover: #e4e4e4;
+}
+
+.nota {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    background-color: var(--color-fondo);
+    text-align: justify;
+}
+
+.nota:hover {
+    background-color: var(--color-hover);
+    border-color: var(--color-hover);
+    outline: none;
+    box-shadow: 0 0 5px var(--color-fondo);
+}
+
+.nota:active {
+    background-color: var(--color-hover);
+}
+
+.button-container {
+    display: flex;
+    /* Necesario para centrar */
+    align-items: center;
+    /* Centra verticalmente */
+    margin: 2px;
+    justify-content: center;
+    /* Centra horizontalmente */
+}
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fila {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.button {
+    border: 0px solid;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: larger;
+    margin: 2px;
+    padding: 0px;
+}
+
+.button:hover {
+    color: blue;
+    background-color: var(--color-boton-hover);
+}
+
+/* Estilos para el campo de input */
+.input {
+    margin: 4px;
+    width: 80%;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+}
+
+/* Estilos adicionales para el foco del campo de input */
+.input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
