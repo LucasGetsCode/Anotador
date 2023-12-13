@@ -1,14 +1,26 @@
 import { Component } from '@angular/core';
 
+export interface Nota {
+  titulo: string;
+  nota: string;
+  index: number;
+  color: string;
+}
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
+
 export class AppComponent {
+
   title: string = 'Anotador2';
   creando: boolean = false;
-  notas: [string, string, number][];
+  // notas: [string, string, number][];
+  notas: Nota[];
   reinicio: boolean = false;
 
   constructor() {
@@ -39,9 +51,9 @@ export class AppComponent {
     console.log("Título: " + titulo);
     console.log("Nota: " + nota);
     if (this.notas != null) {
-      this.notas.push([titulo, nota, index]);
+      this.notas.push({ "titulo": titulo, "nota": nota, "index": index, "color": "#fbfbfb" });
     } else {
-      this.notas = [[titulo, nota, index]];
+      this.notas = [{ "titulo": titulo, "nota": nota, "index": index, "color": "#fbfbfb" }];
     }
     sessionStorage.setItem("notas", JSON.stringify(this.notas));
     this.creando = false;
@@ -54,17 +66,22 @@ export class AppComponent {
   borrar(index: number) {
     this.notas.splice(index, 1);
     for (let i = index; i < this.notas.length; i++) {
-      this.notas[i][2] -= 1;
+      this.notas[i].index -= 1;
     }
     sessionStorage.setItem("notas", JSON.stringify(this.notas));
     console.log("El elemento de índice " + index + " ha sido eliminado con éxito.");
   }
 
-  editar([titulo, nota, index]: [string, string, number]) {
-    if (this.notas[index][0] != titulo || this.notas[index][1] != nota) {
-      this.notas[index] = [titulo, nota, index];
+  editar({ "titulo": titulo, "nota": nota, "index": index, "color": color }: Nota) {
+    if (this.notas[index].titulo != titulo || this.notas[index].nota != nota || this.notas[index].color != color) {
+      console.log("Color " + color);
+      console.log("Notas.color " + this.notas[index].color);
+
+      this.notas[index] = { "titulo": titulo, "nota": nota, "index": index, "color": color };
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
       console.log("El elemento de índice " + index + " ha sido editado con éxito.");
+      console.log("Nuevo color " + this.notas[index].color);
+
     } else {
       console.log("No había nada que editar");
     }
@@ -83,8 +100,8 @@ export class AppComponent {
       this.notas[index] = this.notas[index - 1];
       this.notas[index - 1] = nota;
 
-      this.notas[index][2] += 1;
-      this.notas[index - 1][2] -= 1;
+      this.notas[index].index += 1;
+      this.notas[index - 1].index -= 1;
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
   }
@@ -102,8 +119,8 @@ export class AppComponent {
       this.notas[index] = this.notas[index + 1];
       this.notas[index + 1] = nota;
 
-      this.notas[index][2] -= 1;
-      this.notas[index + 1][2] += 1;
+      this.notas[index].index -= 1;
+      this.notas[index + 1].index += 1;
 
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }

@@ -2,28 +2,29 @@
     <div class="superior">
         <h2>{{titulo}}</h2>
         <div class="button-container">
-            <button type="button" title="arriba" class="button mover" (click)="subir()">▲</button>
-            <button type="button" title="bajar" class="button mover" (click)="bajar()">▼</button>
+            <button type="button" title="Subir" class="button mover" (click)="subir()">▲</button>
+            <button type="button" title="Bajar" class="button mover" (click)="bajar()">▼</button>
         </div>
     </div>
     <div class="inferior">
-        <p>{{nota}}</p>
+        <p style="overflow-wrap: break-word;">{{nota}}</p>
         <div class="button-container">
-            <button type="button" title="editar" class="button principal" (click)="editar()">✎</button>
-            <button type="button" title="borrar" class="button secundario" (click)="borrar()">🗑️</button>
-            <input type="color" [(ngModel)]="color" (input)="actualizarColores()" />
+            <button type="button" title="Editar" class="button principal" (click)="editar()">✎</button>
+            <button type="button" title="Borrar" class="button secundario" (click)="borrar()">🗑️</button>
         </div>
     </div>
 </div>
 
 <div *ngIf="editando" class="nota">
     <br>
-    <input title="titulo" [(ngModel)]="titulo" (keydown)="shiftenter($event)">
+    <input title="Título" class="input" [(ngModel)]="titulo" (keydown)="shiftenter($event)">
     <br>
-    <textarea title="nota" [(ngModel)]="nota" (keydown)="shiftenter($event)"></textarea>
+    <textarea title="Nota" class="input" style="min-height: 100px;" [(ngModel)]="nota"
+        (keydown)="shiftenter($event)"></textarea>
     <br>
-    <button type="button" title="confirmar" class="button principal" (click)="editar()">Confirmar</button>
-    <button type="button" title="confirmar" class="button principal" (click)="cancelar()">Cancelar</button>
+    <button type="button" title="Confirmar" class="button principal" (click)="editar()">Confirmar</button>
+    <button type="button" title="Cancelar" class="button principal" (click)="cancelar()">Cancelar</button>
+    <input type="color" title="color" class="button" [(ngModel)]="color" (input)="actualizarColores()" />
 </div>
 
 <button type="button" title="extra">👍</button>

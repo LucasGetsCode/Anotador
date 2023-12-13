@@ -1,14 +1,15 @@
-import { Component, Input, EventEmitter, Output, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ElementRef, Renderer2, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-nota',
   templateUrl: './nota.component.html',
   styleUrl: './nota.component.css'
 })
-export class NotaComponent {
+export class NotaComponent implements OnInit {
   editando: boolean = false;
   titulo_old = "";
   nota_old = "";
+  color_old = "";
 
 
   @Input() titulo: string = "";
@@ -22,16 +23,27 @@ export class NotaComponent {
   @Output() bajado = new EventEmitter();
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
-    this.actualizarColores();
   }
 
-  actualizarColores() {
-    let background: string = this.color.length > 0 ? this.color : "#fbfbfb";
+  ngOnInit(): void {
+    this.actualizarColores();
+    console.log(this.color);
+
+  }
+
+  actualizarColores(color?: string) {
+    if (color) {
+      console.log("Color insertado");
+
+      this.color = color;
+    }
+    let background: string = this.color//.length > 0 ? this.color : "#fbfbfb";
     let hover: string = this.modificarColor(background, 10);
     let boton_hover: string = this.modificarColor(background, 30)
     this.el.nativeElement.style.setProperty('--color-fondo', background);
     this.el.nativeElement.style.setProperty('--color-hover', hover);
     this.el.nativeElement.style.setProperty('--color-boton-hover', boton_hover);
+    //this.color = background// != "#fbfbfb" ? background : this.color;
   }
 
   borrar() {
@@ -42,14 +54,20 @@ export class NotaComponent {
     this.editando = false;
     this.titulo = this.titulo_old;
     this.nota = this.nota_old;
+    this.color = this.color_old;
+    this.actualizarColores();
   }
 
   editar() {
     if (this.editando) {
-      this.editado.emit([this.titulo, this.nota, this.index])
+      console.log("this.color " + this.color);
+      // this.actualizarColores(this.color);
+      // this.color = this.color_old;
+      this.editado.emit({ "titulo": this.titulo, "nota": this.nota, "index": this.index, "color": this.color })
     } else {
       this.titulo_old = this.titulo;
       this.nota_old = this.nota;
+      this.color_old = this.color;
     }
     this.editando = !this.editando
   }
@@ -75,6 +93,11 @@ export class NotaComponent {
   }
 
   private modificarColor(codigo: string, potencia: number): string {
+    const isColor = (codigo: string) => {
+      const s = new Option().style;
+      s.color = codigo;
+      return s.color !== '';
+    }
     let res: string = "#";
     const regex = /^#[0-9A-Fa-f]{6}$/;
     if (regex.test(codigo)) {
@@ -89,11 +112,11 @@ export class NotaComponent {
           codigoArray[i] = codigoArray[i] + potencia * 2;
         }
         let hex: string = codigoArray[i].toString(16);
-        console.log(hex);
         res += hex.length == 1 ? "0" + hex : hex;
       }
-      console.log(res);
       return res;
+    } else if (isColor(codigo)) {
+      return codigo;
     } else {
       return "#000000"
     }
