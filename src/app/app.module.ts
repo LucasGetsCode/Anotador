@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotaComponent } from './nota/nota.component';
 import { NotaCreadorComponent } from './nota-creador/nota-creador.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotaComponent,
-    NotaCreadorComponent
+    NotaCreadorComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

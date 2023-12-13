@@ -17,7 +17,7 @@ export interface Nota {
 
 export class AppComponent {
 
-  title: string = 'Anotador2';
+  title: string = 'Anotador';
   creando: boolean = false;
   // notas: [string, string, number][];
   notas: Nota[];
