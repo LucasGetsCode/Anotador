@@ -22,6 +22,7 @@ export class AppComponent {
   // notas: [string, string, number][];
   notas: Nota[];
   reinicio: boolean = false;
+  sidebarOpen: boolean = false;
 
   constructor() {
     let descarga = sessionStorage.getItem("notas");
@@ -124,5 +125,9 @@ export class AppComponent {
 
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
+  }
+
+  toggle(estado: boolean) {
+    this.sidebarOpen = estado;
   }
 }

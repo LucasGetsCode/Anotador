@@ -1,14 +1,24 @@
-<app-sidebar></app-sidebar>
-<h1>Notas</h1>
-<button title="clear" type="button" class="button" (click)="clear(false)" *ngIf="!reinicio">Reiniciar</button>
-<button title="clear" type="button" class="button" (click)="clear(true)" *ngIf="reinicio">Confirmar reinicio</button>
-<button title="clear" type="button" class="button" (click)="clear(false)" *ngIf="reinicio">Cancelar reinicio</button>
-<br>
-<div *ngFor="let nota of notas" class="nota">
-    <app-nota [titulo]="nota.titulo" [nota]="nota.nota" [index]="nota.index" [color]="nota.color"
-        (borrado)="borrar($event)" (editado)="editar($event)" (subido)="subir($event)"
-        (bajado)="bajar($event)"></app-nota>
+<div style="width: 100%; display: flex;" class="wrapper">
+    <div class="sidebar">
+        <app-sidebar (toggle)="toggle($event)"></app-sidebar>
+    </div>
+    <div class="notas" [ngClass]="{ 'open': sidebarOpen }">
+        <h1>Notas</h1>
+        <button title="clear" type="button" class="button" (click)="clear(false)" *ngIf="!reinicio">Reiniciar</button>
+        <button title="clear" type="button" class="button" (click)="clear(true)" *ngIf="reinicio">Confirmar reinicio</button>
+        <button title="clear" type="button" class="button" (click)="clear(false)" *ngIf="reinicio">Cancelar reinicio</button>
+        <br>
+        <div class="notas-container">
+            <div *ngFor="let nota of notas" class="nota">
+                <app-nota [titulo]="nota.titulo" [nota]="nota.nota" [index]="nota.index" [color]="nota.color"
+                    (borrado)="borrar($event)" (editado)="editar($event)" (subido)="subir($event)"
+                    (bajado)="bajar($event)"></app-nota>
+            </div>
+            <app-nota-creador *ngIf="creando" (enviarDatos)="creado($event)" (cancelarEnvio)="cancelado()"></app-nota-creador>
+        </div>
+        <br>
+        <button title="crear" type="button" class="button" (click)="crear('hola')">Crear</button>           
+    </div>
+    
+    
 </div>
-<app-nota-creador *ngIf="creando" (enviarDatos)="creado($event)" (cancelarEnvio)="cancelado()"></app-nota-creador>
-<br>
-<button title="crear" type="button" class="button" (click)="crear('hola')">Crear</button>

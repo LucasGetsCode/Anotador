@@ -1,4 +1,4 @@
-:host {
+.wrapper {
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,36 @@
     min-height: 100vh;
 }
 
+.notas {
+    width: 80%;
+    margin-left: 0px;
+    transition: 0.5s;
+}
+
+.notas-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 400px) {
+    .notas-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .nota {
+        flex: 0 0 calc(50% - 20px);
+        margin: 10px;
+    }
+}
+
+.notas.open {
+    margin-left: 200px;
+    transition: 0.5s;
+}
+
 .nota {
     width: 50%;
     min-width: 50vh;
+    margin: auto;
 }  
