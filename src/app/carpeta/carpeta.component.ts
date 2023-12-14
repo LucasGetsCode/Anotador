@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export interface Nota {
   titulo: string;
@@ -7,34 +7,20 @@ export interface Nota {
   color: string;
 }
 
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: 'app-carpeta',
+  templateUrl: './carpeta.component.html',
+  styleUrl: './carpeta.component.css'
 })
-
-
-export class AppComponent {
-
-  title: string = 'Anotador';
+export class CarpetaComponent {
   creando: boolean = false;
   notas: Nota[];
-  carpetas: string[];
-  carpeta_actual: number = 0;
   reinicio: boolean = false;
   sidebarOpen: boolean = false;
 
+  @Input() nombre: string = "";
+
   constructor() {
-    let carpetas = sessionStorage.getItem("carpetas");
-    if (carpetas) {
-        this.carpetas = JSON.parse(carpetas);
-    } else {
-      this.carpetas = ["notas"];
-    }
-    for (let i = 0; i < this.carpetas.length; i++) {
-            
-    }
     let descarga = sessionStorage.getItem("notas");
     this.notas = descarga ? JSON.parse(descarga) : [];
     for (let i = 0; i < this.notas.length; i++) {
@@ -135,9 +121,5 @@ export class AppComponent {
 
       sessionStorage.setItem("notas", JSON.stringify(this.notas));
     }
-  }
-
-  toggle(estado: boolean) {
-    this.sidebarOpen = estado;
   }
 }

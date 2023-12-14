@@ -1,4 +1,4 @@
-<div style="width: 100%; display: flex;" class="wrapper">
+<!-- <div style="width: 100%; display: flex;" class="wrapper">
     <div class="sidebar">
         <app-sidebar (toggle)="toggle($event)"></app-sidebar>
     </div>
@@ -21,4 +21,11 @@
     </div>
     
     
+</div> -->
+<div style="width: 100%; display: flex;" class="wrapper">
+    <div class="sidebar">
+        <app-sidebar [carpetas]="carpetas" (toggle)="toggle($event)"></app-sidebar>
+    </div>
+    <app-carpeta [nombre]="carpetas[carpeta_actual]"
+    [ngClass]="{ 'open': sidebarOpen }" class="notas"></app-carpeta>
 </div>

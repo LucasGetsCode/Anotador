@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { NotaComponent } from './nota/nota.component';
 import { NotaCreadorComponent } from './nota-creador/nota-creador.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { CarpetaComponent } from './carpeta/carpeta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotaComponent,
     NotaCreadorComponent,
-    SidebarComponent
+    SidebarComponent,
+    CarpetaComponent
   ],
   imports: [
     BrowserModule,

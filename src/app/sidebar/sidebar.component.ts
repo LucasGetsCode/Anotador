@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,6 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class SidebarComponent {
   sidebarOpen = false;
+  
+  @Input() carpetas: string[] = [];
 
   @Output() toggle = new EventEmitter();
 

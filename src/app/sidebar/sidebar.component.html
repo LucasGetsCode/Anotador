@@ -5,9 +5,7 @@
     </div>
     <div class="contenido">
       <ul>
-        <li><a href="#">Opción 1</a></li>
-        <li><a href="#">Opción 2</a></li>
-        <li><a href="#">Opción 3</a></li>
+        <li *ngFor="let carpeta of carpetas"><a href="{{carpeta}}">{{carpeta}}</a></li>
       </ul>  
     </div>
 </div>

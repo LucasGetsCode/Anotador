@@ -48,6 +48,10 @@
   margin: 0;
 }
 
+.sidebar li {
+  text-transform: capitalize;
+}
+
 .sidebar a {
   padding: 8px;
   text-decoration: none;
