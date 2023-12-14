@@ -31,14 +31,46 @@ export class AppComponent {
         this.carpetas = JSON.parse(carpetas);
     } else {
       this.carpetas = ["notas"];
+      sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
     }
-    for (let i = 0; i < this.carpetas.length; i++) {
+    // for (let i = 0; i < this.carpetas.length; i++) {
             
-    }
+    // }
     let descarga = sessionStorage.getItem("notas");
     this.notas = descarga ? JSON.parse(descarga) : [];
     for (let i = 0; i < this.notas.length; i++) {
       console.log(this.notas[i]);
+    }
+  }
+
+  crear_carpeta() {
+    this.carpetas.push(Date.now().toString());
+    sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
+  }
+  
+  eliminar_carpeta() {
+    this.carpetas.splice(this.carpeta_actual, 1);
+    sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
+    if (this.carpeta_actual == this.carpetas.length) {
+      this.carpeta_actual -= 1;
+    }
+    if (this.carpetas.length == 0) {
+      this.carpeta_actual = 0;
+      this.carpetas = ["notas"];
+      sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
+    }
+  }
+
+  cambiar_carpeta(carpeta?: string) {
+    if (carpeta) {
+      let index: number = this.carpetas.indexOf(carpeta);
+      this.carpeta_actual = index;
+    } else {
+      if (this.carpeta_actual != this.carpetas.length - 1) {
+        this.carpeta_actual += 1;
+      } else {
+        this.carpeta_actual = 0;
+      }  
     }
   }
 

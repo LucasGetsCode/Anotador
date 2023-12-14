@@ -23,9 +23,15 @@
     
 </div> -->
 <div style="width: 100%; display: flex;" class="wrapper">
+    <button type="button" title="Cambiar carpeta" (click)="cambiar_carpeta()">Cambiar carpeta</button>
+    <button type="button" title="Crear carpeta" (click)="crear_carpeta()">Crear carpeta</button>
+    <button type="button" title="Eliminar carpeta" (click)="eliminar_carpeta()">Eliminar carpeta</button>
     <div class="sidebar">
-        <app-sidebar [carpetas]="carpetas" (toggle)="toggle($event)"></app-sidebar>
+        <app-sidebar [carpetas]="carpetas" (carpeta_select)="cambiar_carpeta($event)" (toggle)="toggle($event)"></app-sidebar>
     </div>
-    <app-carpeta [nombre]="carpetas[carpeta_actual]"
-    [ngClass]="{ 'open': sidebarOpen }" class="notas"></app-carpeta>
+    
+    <div *ngFor="let carpeta of carpetas">
+        <app-carpeta [nombre]="carpeta" *ngIf="carpeta == carpetas[carpeta_actual]"
+        [ngClass]="{ 'open': sidebarOpen }" class="notas"></app-carpeta>
+   </div>
 </div>

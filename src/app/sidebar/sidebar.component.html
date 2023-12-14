@@ -5,7 +5,7 @@
     </div>
     <div class="contenido">
       <ul>
-        <li *ngFor="let carpeta of carpetas"><a href="{{carpeta}}">{{carpeta}}</a></li>
+        <li *ngFor="let carpeta of carpetas"><a (click)="cambio_carpeta(carpeta)" href="#">{{carpeta}}</a></li>
       </ul>  
     </div>
 </div>

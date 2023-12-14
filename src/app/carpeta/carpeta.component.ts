@@ -21,7 +21,15 @@ export class CarpetaComponent {
   @Input() nombre: string = "";
 
   constructor() {
-    let descarga = sessionStorage.getItem("notas");
+    let descarga = sessionStorage.getItem(this.nombre);
+    this.notas = descarga ? JSON.parse(descarga) : [];
+    for (let i = 0; i < this.notas.length; i++) {
+      console.log(this.notas[i]);
+    }
+  }
+
+  ngOnInit() {
+    let descarga = sessionStorage.getItem(this.nombre);
     this.notas = descarga ? JSON.parse(descarga) : [];
     for (let i = 0; i < this.notas.length; i++) {
       console.log(this.notas[i]);
@@ -52,7 +60,7 @@ export class CarpetaComponent {
     } else {
       this.notas = [{ "titulo": titulo, "nota": nota, "index": index, "color": color }];
     }
-    sessionStorage.setItem("notas", JSON.stringify(this.notas));
+    sessionStorage.setItem(this.nombre, JSON.stringify(this.notas));
     this.creando = false;
   }
 
@@ -65,7 +73,7 @@ export class CarpetaComponent {
     for (let i = index; i < this.notas.length; i++) {
       this.notas[i].index -= 1;
     }
-    sessionStorage.setItem("notas", JSON.stringify(this.notas));
+    sessionStorage.setItem(this.nombre, JSON.stringify(this.notas));
     console.log("El elemento de índice " + index + " ha sido eliminado con éxito.");
   }
 
@@ -75,7 +83,7 @@ export class CarpetaComponent {
       console.log("Notas.color " + this.notas[index].color);
 
       this.notas[index] = { "titulo": titulo, "nota": nota, "index": index, "color": color };
-      sessionStorage.setItem("notas", JSON.stringify(this.notas));
+      sessionStorage.setItem(this.nombre, JSON.stringify(this.notas));
       console.log("El elemento de índice " + index + " ha sido editado con éxito.");
       console.log("Nuevo color " + this.notas[index].color);
 
@@ -99,7 +107,7 @@ export class CarpetaComponent {
 
       this.notas[index].index += 1;
       this.notas[index - 1].index -= 1;
-      sessionStorage.setItem("notas", JSON.stringify(this.notas));
+      sessionStorage.setItem(this.nombre, JSON.stringify(this.notas));
     }
   }
 
@@ -119,7 +127,7 @@ export class CarpetaComponent {
       this.notas[index].index -= 1;
       this.notas[index + 1].index += 1;
 
-      sessionStorage.setItem("notas", JSON.stringify(this.notas));
+      sessionStorage.setItem(this.nombre, JSON.stringify(this.notas));
     }
   }
 }
