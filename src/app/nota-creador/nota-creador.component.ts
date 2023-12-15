@@ -8,24 +8,24 @@ import { Component, Output, EventEmitter, NgModule } from '@angular/core';
 export class NotaCreadorComponent {
   titulo = "";
   nota = "";
-  color = "";
+  color = "#f075C3";
 
   @Output() enviarDatos = new EventEmitter();
   @Output() cancelarEnvio = new EventEmitter();
 
-    ok() {
-      this.enviarDatos.emit([this.titulo, this.nota, this.color])
-    }
+  ok() {
+    this.enviarDatos.emit([this.titulo, this.nota, this.color])
+  }
 
-    shiftenter(event: KeyboardEvent) {
-      if (event.key === 'Enter' && event.shiftKey) {
-        this.ok();
-        event.preventDefault();
-      }
+  shiftenter(event: KeyboardEvent) {
+    if (event.key === 'Enter' && event.shiftKey) {
+      this.ok();
+      event.preventDefault();
     }
+  }
 
-    cancelar() {
-      console.log("cancelar");
-      this.cancelarEnvio.emit();
-    }
+  cancelar() {
+    console.log("cancelar");
+    this.cancelarEnvio.emit();
+  }
 }
