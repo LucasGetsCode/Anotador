@@ -1,16 +1,16 @@
 <div class="sidebar" [ngClass]="{ 'open': sidebarOpen }">
-    <!-- Contenido de la barra lateral -->
-    <div class="desactivada">
-      <button class="toggler" type="button" (click)="toggleSidebar()">☰</button>
-    </div>
-    <div class="contenido">
-      <ul>
-        <li *ngFor="let carpeta of carpetas"><a (click)="cambio_carpeta(carpeta)" href="#">{{carpeta}}</a></li>
-      </ul>  
-    </div>
+  <!-- Contenido de la barra lateral -->
+  <div class="desactivada">
+    <button class="toggler" type="button" (click)="toggleSidebar()">☰</button>
+  </div>
+  <div class="contenido">
+    <ul>
+      <li *ngFor="let carpeta of carpetas"><a (click)="cambio_carpeta(carpeta)" href="#">{{carpeta.nombre}}</a></li>
+    </ul>
+  </div>
 </div>
 <div class="flechita" [ngClass]="{ 'open': sidebarOpen }">
-  <button class="barra" title="barra" (click)="toggleSidebar()">〈</button>  
+  <button class="barra" title="barra" (click)="toggleSidebar()">〈</button>
 </div>
 
 <button title="barra" (click)="toggleSidebar()">.</button>

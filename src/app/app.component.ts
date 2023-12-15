@@ -7,6 +7,12 @@ export interface Nota {
   color: string;
 }
 
+export interface Carpeta {
+  nombre: string;
+  id: number;
+  color_pred: string;
+}
+
 
 @Component({
   selector: 'app-root',
@@ -20,7 +26,7 @@ export class AppComponent {
   title: string = 'Anotador';
   creando: boolean = false;
   notas: Nota[];
-  carpetas: string[];
+  carpetas: Carpeta[];
   carpeta_actual: number = 0;
   reinicio: boolean = false;
   sidebarOpen: boolean = false;
@@ -28,13 +34,13 @@ export class AppComponent {
   constructor() {
     let carpetas = sessionStorage.getItem("carpetas");
     if (carpetas) {
-        this.carpetas = JSON.parse(carpetas);
+      this.carpetas = JSON.parse(carpetas);
     } else {
-      this.carpetas = ["notas"];
+      this.carpetas = [{ "nombre": "notas", "id": Date.now(), color_pred: "#F075C3" }];
       sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
     }
     // for (let i = 0; i < this.carpetas.length; i++) {
-            
+
     // }
     let descarga = sessionStorage.getItem("notas");
     this.notas = descarga ? JSON.parse(descarga) : [];
@@ -44,10 +50,11 @@ export class AppComponent {
   }
 
   crear_carpeta() {
-    this.carpetas.push(Date.now().toString());
+    this.carpetas.push({ "id": Date.now(), "nombre": Date.now().toString(), "color_pred": "#f075C3" });
     sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
+    this.cambiar_carpeta(undefined, this.carpetas.length - 1);
   }
-  
+
   eliminar_carpeta() {
     this.carpetas.splice(this.carpeta_actual, 1);
     sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
@@ -56,21 +63,29 @@ export class AppComponent {
     }
     if (this.carpetas.length == 0) {
       this.carpeta_actual = 0;
-      this.carpetas = ["notas"];
+      this.carpetas = [{ "nombre": "notas", "id": Date.now(), color_pred: "#F075C3" }];
       sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
     }
   }
 
-  cambiar_carpeta(carpeta?: string) {
-    if (carpeta) {
-      let index: number = this.carpetas.indexOf(carpeta);
+  cambiar_carpeta(carpeta_id?: number, indice?: number) {
+    if (carpeta_id) {
+      let index: number = 0;
+      // let index: number = this.carpetas.indexOf(carpeta_id);
+      for (let i = 0; i < this.carpetas.length; i++) {
+        if (this.carpetas[i].id == carpeta_id) {
+          index = i;
+        }
+      }
       this.carpeta_actual = index;
+    } else if (indice) {
+      this.carpeta_actual = indice;
     } else {
       if (this.carpeta_actual != this.carpetas.length - 1) {
         this.carpeta_actual += 1;
       } else {
         this.carpeta_actual = 0;
-      }  
+      }
     }
   }
 

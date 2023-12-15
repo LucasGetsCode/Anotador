@@ -27,11 +27,12 @@
     <button type="button" title="Crear carpeta" (click)="crear_carpeta()">Crear carpeta</button>
     <button type="button" title="Eliminar carpeta" (click)="eliminar_carpeta()">Eliminar carpeta</button>
     <div class="sidebar">
-        <app-sidebar [carpetas]="carpetas" (carpeta_select)="cambiar_carpeta($event)" (toggle)="toggle($event)"></app-sidebar>
+        <app-sidebar [carpetas]="carpetas" (carpeta_select)="cambiar_carpeta($event)"
+            (toggle)="toggle($event)"></app-sidebar>
     </div>
-    
+
     <div *ngFor="let carpeta of carpetas">
-        <app-carpeta [nombre]="carpeta" *ngIf="carpeta == carpetas[carpeta_actual]"
-        [ngClass]="{ 'open': sidebarOpen }" class="notas"></app-carpeta>
-   </div>
+        <app-carpeta [id]="carpeta.id" [color_pred]="carpeta.color_pred" [nombre]="carpeta.nombre"
+            *ngIf="carpeta == carpetas[carpeta_actual]" [ngClass]="{ 'open': sidebarOpen }" class="notas"></app-carpeta>
+    </div>
 </div>

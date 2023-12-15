@@ -18,7 +18,9 @@ export class CarpetaComponent {
   reinicio: boolean = false;
   sidebarOpen: boolean = false;
 
-  @Input() nombre: string = "";
+  @Input() nombre: string = "a";
+  @Input() id: number = 0;
+  @Input() color_pred: string = "#f075C3";
 
   constructor() {
     let descarga = sessionStorage.getItem(this.nombre);
