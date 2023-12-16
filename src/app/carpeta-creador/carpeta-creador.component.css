@@ -15,9 +15,9 @@
 
 .nota:hover {
     background-color: var(--color-hover);
-    /* border-color: var(--color-hover); */
+    border-color: var(--color-hover);
     outline: none;
-    box-shadow: 0 0 5px gray;
+    box-shadow: 0 0 5px var(--color-fondo);
 }
 
 .nota:active {

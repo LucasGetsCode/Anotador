@@ -12,9 +12,9 @@
                 (borrado)="borrar($event)" (editado)="editar($event)" (subido)="subir($event)"
                 (bajado)="bajar($event)"></app-nota>
         </div>
-        <app-nota-creador *ngIf="creando" (enviarDatos)="creado($event)"
+        <app-nota-creador *ngIf="creando" [color]="color_pred" (enviarDatos)="creado($event)"
             (cancelarEnvio)="cancelado()"></app-nota-creador>
     </div>
     <br>
-    <button title="crear" type="button" class="button" (click)="crear('hola')">Crear</button>
+    <button title="crear" type="button" class="button" (click)="crear()">Crear</button>
 </div>

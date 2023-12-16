@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, NgModule } from '@angular/core';
+import { Component, Output, EventEmitter, NgModule, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nota-creador',
@@ -8,7 +8,8 @@ import { Component, Output, EventEmitter, NgModule } from '@angular/core';
 export class NotaCreadorComponent {
   titulo = "";
   nota = "";
-  color = "#f075C3";
+
+  @Input() color: string = "";
 
   @Output() enviarDatos = new EventEmitter();
   @Output() cancelarEnvio = new EventEmitter();
@@ -25,7 +26,6 @@ export class NotaCreadorComponent {
   }
 
   cancelar() {
-    console.log("cancelar");
     this.cancelarEnvio.emit();
   }
 }

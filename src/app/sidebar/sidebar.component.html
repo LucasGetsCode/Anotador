@@ -7,10 +7,15 @@
     <ul>
       <li *ngFor="let carpeta of carpetas"><a (click)="cambio_carpeta(carpeta)" href="#">{{carpeta.nombre}}</a></li>
     </ul>
+
+    <app-carpeta-creador *ngIf="creando" (enviarDatos)="crear_carpeta($event)"
+      (cancelarEnvio)="cancelar_carpeta()"></app-carpeta-creador>
+    <button class="flechita" id="crear" *ngIf="!creando" type="button" title="Crear carpeta"
+      (click)="creando_carpeta()">+</button>
   </div>
 </div>
-<div class="flechita" [ngClass]="{ 'open': sidebarOpen }">
-  <button class="barra" title="barra" (click)="toggleSidebar()">〈</button>
+<div class="flechita-container" [ngClass]="{ 'open': sidebarOpen }">
+  <button class="flechita" title="barra" (click)="toggleSidebar()">〈</button>
 </div>
 
 <button title="barra" (click)="toggleSidebar()">.</button>

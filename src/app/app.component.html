@@ -27,8 +27,8 @@
     <button type="button" title="Crear carpeta" (click)="crear_carpeta()">Crear carpeta</button>
     <button type="button" title="Eliminar carpeta" (click)="eliminar_carpeta()">Eliminar carpeta</button>
     <div class="sidebar">
-        <app-sidebar [carpetas]="carpetas" (carpeta_select)="cambiar_carpeta($event)"
-            (toggle)="toggle($event)"></app-sidebar>
+        <app-sidebar [carpetas]="carpetas" (carpeta_create)="crear_carpeta($event)"
+            (carpeta_select)="cambiar_carpeta($event)" (toggle)="toggle($event)"></app-sidebar>
     </div>
 
     <div *ngFor="let carpeta of carpetas">

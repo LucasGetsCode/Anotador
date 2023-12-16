@@ -1,0 +1,15 @@
+<div class="nota">
+    <h2 style="margin: 5px;">Nombre:</h2>
+    <input title="Nombre" class="input" [(ngModel)]="nombre" (keydown)="shiftenter($event)">
+
+    <div class="fila">
+        <h4 style="margin: 1px;">Color pred:</h4>
+        <input type="color" title="Color predeterminado" class="button" [(ngModel)]="color_pred" />
+    </div>
+
+    <div class="button-container fila">
+        <button type="button" title="Ok" (click)="ok()">OK</button>
+        <button type="button" title="Cancel" (click)="cancelar()">Cancelar</button>
+    </div>
+
+</div>

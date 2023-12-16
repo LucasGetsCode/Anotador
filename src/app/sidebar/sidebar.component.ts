@@ -12,15 +12,30 @@ export interface Carpeta {
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  sidebarOpen = false;
+  sidebarOpen: boolean = false;
+  creando: boolean = false;
 
   @Input() carpetas: Carpeta[] = [];
 
   @Output() toggle = new EventEmitter();
   @Output() carpeta_select = new EventEmitter();
+  @Output() carpeta_create = new EventEmitter();
 
   cambio_carpeta(carpeta: Carpeta) {
-    this.carpeta_select.emit(carpeta);
+    this.carpeta_select.emit(carpeta.id);
+  }
+
+  cancelar_carpeta() {
+    this.creando = false;
+  }
+
+  creando_carpeta() {
+    this.creando = true;
+  }
+
+  crear_carpeta([nombre, color_pred]: [string, string]) {
+    this.carpeta_create.emit([nombre, color_pred]);
+    this.creando = false;
   }
 
   toggleSidebar() {

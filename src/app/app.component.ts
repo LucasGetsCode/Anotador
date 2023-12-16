@@ -49,8 +49,14 @@ export class AppComponent {
     }
   }
 
-  crear_carpeta() {
-    this.carpetas.push({ "id": Date.now(), "nombre": Date.now().toString(), "color_pred": "#f075C3" });
+  crear_carpeta(data?: [string, string]) {
+    let nombre: string = Date.now().toString();
+    let color_pred: string = "#f075C3";
+    if (data) {
+      nombre = data[0];
+      color_pred = data[1];
+    }
+    this.carpetas.push({ "id": Date.now(), "nombre": nombre, "color_pred": color_pred });
     sessionStorage.setItem("carpetas", JSON.stringify(this.carpetas));
     this.cambiar_carpeta(undefined, this.carpetas.length - 1);
   }

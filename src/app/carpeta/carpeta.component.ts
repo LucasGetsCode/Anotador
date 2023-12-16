@@ -26,16 +26,12 @@ export class CarpetaComponent {
     let descarga = sessionStorage.getItem(this.nombre);
     this.notas = descarga ? JSON.parse(descarga) : [];
     for (let i = 0; i < this.notas.length; i++) {
-      console.log(this.notas[i]);
     }
   }
 
   ngOnInit() {
     let descarga = sessionStorage.getItem(this.nombre);
     this.notas = descarga ? JSON.parse(descarga) : [];
-    for (let i = 0; i < this.notas.length; i++) {
-      console.log(this.notas[i]);
-    }
   }
 
   clear(confirmado: boolean) {
@@ -48,15 +44,12 @@ export class CarpetaComponent {
     }
   }
 
-  crear(mensaje: string) {
+  crear() {
     this.creando = true;
-    console.log(mensaje);
   }
 
   creado([titulo, nota, color]: [string, string, string]) {
     let index = this.notas.length;
-    console.log("Título: " + titulo);
-    console.log("Nota: " + nota);
     if (this.notas != null) {
       this.notas.push({ "titulo": titulo, "nota": nota, "index": index, "color": color });
     } else {
@@ -81,14 +74,9 @@ export class CarpetaComponent {
 
   editar({ "titulo": titulo, "nota": nota, "index": index, "color": color }: Nota) {
     if (this.notas[index].titulo != titulo || this.notas[index].nota != nota || this.notas[index].color != color) {
-      console.log("Color " + color);
-      console.log("Notas.color " + this.notas[index].color);
-
       this.notas[index] = { "titulo": titulo, "nota": nota, "index": index, "color": color };
       sessionStorage.setItem(this.nombre, JSON.stringify(this.notas));
       console.log("El elemento de índice " + index + " ha sido editado con éxito.");
-      console.log("Nuevo color " + this.notas[index].color);
-
     } else {
       console.log("No había nada que editar");
     }
