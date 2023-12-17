@@ -1,4 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, EventEmitter, Output, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Observable, forkJoin } from 'rxjs';
+
+export interface apis {
+  "ratio": string,
+  "AA": string,
+  "AALarge": string,
+  "AAA": string,
+  "AAALarge": string
+}
 
 @Component({
   selector: 'app-nota',
@@ -10,6 +20,7 @@ export class NotaComponent implements OnInit {
   titulo_old = "";
   nota_old = "";
   color_old = "";
+  apiURL = "https://webaim.org/resources/contrastchecker/?fcolor=";
 
 
   @Input() titulo: string = "";
@@ -22,8 +33,7 @@ export class NotaComponent implements OnInit {
   @Output() subido = new EventEmitter();
   @Output() bajado = new EventEmitter();
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
+  constructor(private el: ElementRef, private renderer: Renderer2, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.actualizarColores();
@@ -39,7 +49,10 @@ export class NotaComponent implements OnInit {
     this.el.nativeElement.style.setProperty('--color-fondo', background);
     this.el.nativeElement.style.setProperty('--color-hover', hover);
     this.el.nativeElement.style.setProperty('--color-boton-hover', boton_hover);
-    this.el.nativeElement.style.setProperty('--color-texto', this.colorTexto(this.modificarColor(background, 0)));
+    this.colorTexto(this.modificarColor(background, 0));
+    // this.colorTexto(this.modificarColor(background, 0)).subscribe(
+    // (res: any) => this.el.nativeElement.style.setProperty('--color-texto', res))
+    // this.el.nativeElement.style.setProperty('--color-texto', this.colorTexto(this.modificarColor(background, 0)));
     //this.color = background// != "#fbfbfb" ? background : this.color;
   }
 
@@ -116,7 +129,12 @@ export class NotaComponent implements OnInit {
     }
   }
 
-  private colorTexto(codigo: string): string {
+  private obtener_contrastes(url1: string, url2: string): Observable<apis>[] {
+    return [this.http.get<apis>(url1), this.http.get<apis>(url2)];
+  }
+
+  private colorTexto(codigo: string): any {
+    let codigoHex: string = codigo.substring(1, 7);
     let r: number = parseInt(codigo.substring(1, 3), 16);
     let g: number = parseInt(codigo.substring(3, 5), 16);
     let b: number = parseInt(codigo.substring(5, 7), 16);
@@ -124,7 +142,29 @@ export class NotaComponent implements OnInit {
     let luminicencia: number = 0.2126 * r / 255 + 0.7152 * g / 255 + 0.0722 * b / 255;
     const contr_blanco = 1.05 / (luminicencia + 0.05);
     const contr_negro = (luminicencia + 0.05) / 0.05;
-    let res = contr_blanco > contr_negro ? "#ffffff" : "#000000"
-    return res;
+    // let res = contr_blanco > contr_negro ? "#ffffff" : "#000000";
+
+    const url_negro = `${this.apiURL}000000&bcolor=${codigoHex}&api`;
+    const url_blanco = `${this.apiURL}FFFFFF&bcolor=${codigoHex}&api`;
+    let valor_blanco: number;
+    let valor_negro: number;
+    forkJoin(this.obtener_contrastes(url_blanco, url_negro)).subscribe(response => {
+      let blanco: apis = response[0];
+      valor_blanco = parseFloat(blanco.ratio);
+      let negro: apis = response[1];
+      valor_negro = parseFloat(negro.ratio);
+      console.log(`Blanco: ${valor_blanco}. Negro: ${valor_negro}`);
+
+      let res = valor_blanco > valor_negro ? "#ffffff" : "#000000";
+      console.log(res);
+
+      this.el.nativeElement.style.setProperty('--color-texto', res)
+      return res;
+    }, error => {
+      return "";
+    })
+    // let valor_blanco = this.http.get(url_blanco).ratio;
+    // let valor_negro = this.http.get(url_negro).ratio;
+
   }
 }
